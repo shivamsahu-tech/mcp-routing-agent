@@ -10,7 +10,7 @@ I used here **recursive approach** with **max_iteration 5**, So our llm can call
 
 #### My  Past Related work
 I have already worked on MCP, you can see my project (https://github.com/shivamsahu-tech/circuit-designer-mcp) that i build after the 1 month when anthropic release the MCP, in which i provided some tools like get_datasheet_pdf(), get_reserach_papers() etc.
-I also worked many agentic project using langchain and langgraph, and also some custom ingestion system, like codeRAG Agent (https://github.com/shivamsahu-tech/coderag-ai)(graph based) . 
+I also worked many agentic project using langchain and langgraph, and also some custom ingestion system, like codeRAG Agent (https://github.com/shivamsahu-tech/coderag-ai)  (graph based) . 
 
 I'm passionate about building AI-powered systems and have extensive experience with:
 
