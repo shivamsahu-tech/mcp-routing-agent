@@ -3,9 +3,9 @@
 (Personal Note)
 
 Hey, 
-I created the required project api(`http://localhost:3000/api/chat`) , and also integrated a webpage, I used **NextJS + TypeScript + Prisma 7 (newer version) + Huggingface + MCP (Anthropic)**. I created MCP client in /lib folder while all mcp server files with tools is belongs in server_mcp folder.
+I created the required project api(`http://localhost:3000/api/chat`) , and also integrated a webpage, I used **NextJS + TypeScript + Prisma 7 (newer version) + Huggingface + MCP (Anthropic)**. I created MCP client in /lib folder while all mcp server files with tools belongs in server_mcp folder.
 
-I used here **recursive approach** with **max_iteration 5**, So our llm can call the tools again and again untill it hit the max_iteration value or get the most suitable answer, That is very crucial, Because if any work is multistep like first reviewing the tables in database and then accessing any table, then that also can be executed with this approach. (I try to successful deployment on vercel, but got some issue, as debugging can takes time(less time available), and also not mentioned in assignment, i submitted before successfull deployment.)
+I used here **recursive approach** with **max_iteration 5**, So our llm can call the tools again and again untill it hit the max_iteration value or get the most suitable answer, That is very crucial, Because if any work is needed multistep like first reviewing the tables in database and then accessing any table, then that also can be executed with this approach. (I try to successful deployment on vercel, but got some issue, as debugging can takes time(less time available), and also not mentioned in assignment, i submitted before successfull deployment.)
 
 
 #### My  Past Related work
