@@ -1,10 +1,33 @@
-# MCP Routing Agent
+# MCP (Model Context Protocol) Routing Agent
 
-An intelligent AI routing system built with **Next.js**, **TypeScript**, **Prisma 7**, and **Hugging Face**, leveraging the **Model Context Protocol (MCP)** for seamless tool integration and multi-step reasoning.
+(Personal Note)
 
-## 🎯 Overview
+Hey, 
+I created the required project api(`http://localhost:3000/api/chat`) , and also integrated a webpage, I used **NextJS + TypeScript + Prisma 7 (newer version) + Huggingface + MCP (Anthropic)**. I created MCP client in /lib folder while all mcp server files with tools is belongs in server_mcp folder.
 
-I created this project to demonstrate an advanced AI routing agent that can intelligently handle natural language queries and route them to appropriate tools (database queries, weather API, etc.). The system uses a **recursive approach** with a maximum of **10 iterations**, allowing the LLM to perform multi-step reasoning - crucial for complex tasks like first reviewing database tables and then querying specific data.
+I used here **recursive approach** with **max_iteration 5**, So our llm can call the tools again and again untill it hit the max_iteration value or get the most suitable answer, That is very crucial, Because if any work is multistep like first reviewing the tables in database and then accessing any table, then that also can be executed with this approach
+
+
+#### My  Past Related work
+I have already worked on MCP, you can see my project (https://github.com/shivamsahu-tech/circuit-designer-mcp) that i build after the 1 month when anthropic release the MCP, in which i provided some tools like get_datasheet_pdf(), get_reserach_papers() etc.
+I also worked many agentic project using langchain and langgraph, and also some custom ingestion system, like codeRAG Agent (https://github.com/shivamsahu-tech/coderag-ai)(graph based) . 
+
+I'm passionate about building AI-powered systems and have extensive experience with:
+
+- **Multimodel Real time MeetRAG AI** : Here i used realtime transcription using **websocket + deepgram API (dual channel ensure cost effective)**, Docs ingestions with **manual + OCR, Cloudinary data storage, redis** for caching. (https://github.com/shivamsahu-tech/meeting-rag)
+- **RAG Systems**: Created [CodeRAG Agent](https://github.com/shivamsahu-tech/coderag-ai), Work indepth about the best context retrievel method for AI, **(inspire with cursor, windsurf technologies and cAST reserach paper)**, I created dependecy graph for the whole github codebase resolving the function, class calls, and imports using **tree-sitter and DFS traversal**, use here neo4J Graph DB
+- **MCP (Model Context Protocol)**: Built [Circuit Designer MCP](https://github.com/shivamsahu-tech/circuit-designer-mcp) with tools like `get_datasheet_pdf()`, `get_research_papers()`, `run_netlist_code()`, etc. And provide the LLM, **ngspice software interface, that how it generate we tested circuit designs**. 
+- **Other**: I also worked on person idea, in which a bot will join the **slack workspace** and using **webhook** it will read the project progress chat, and maintain a memory, so when project manager want to know the suggestion or check the progress development, he can easily justs talk with my agent.
+
+
+## Architecture
+
+![Architecture Flow](https://drive.google.com/uc?export=view&id=1FHitLgYm0NcFeMT8hO5totsI4vk8qntA)
+
+
+## Demo
+
+**Screen Recording**: [Watch Demo](https://drive.google.com/file/d/1FHitLgYm0NcFeMT8hO5totsI4vk8qntA/view?usp=sharing)
 
 ### Key Features
 
@@ -14,36 +37,9 @@ I created this project to demonstrate an advanced AI routing agent that can inte
 - ✅ **Weather Tool**: Fetch real-time weather data using Open-Meteo API
 - ✅ **Modern Stack**: Next.js 16 + TypeScript + Prisma 7 + Hugging Face (Qwen2.5-72B-Instruct)
 - ✅ **Web Interface**: Clean, interactive chat UI for testing the agent
-- ✅ **Production Ready**: Deployed on Vercel with proper error handling
 
-## 🎬 Demo
 
-**Live Demo**: [Vercel Deployment URL]
 
-**Screen Recording**: [Watch Demo](https://drive.google.com/file/d/1FHitLgYm0NcFeMT8hO5totsI4vk8qntA/view?usp=sharing)
-
-## 🏗️ Architecture
-
-![Architecture Flow](https://drive.google.com/uc?export=view&id=1FHitLgYm0NcFeMT8hO5totsI4vk8qntA)
-
-### System Flow
-
-```
-User Query → Next.js API Route → MCP Client → Hugging Face LLM
-                                      ↓
-                              Tool Selection & Execution
-                                      ↓
-                         ┌────────────┴────────────┐
-                         ↓                         ↓
-                  Database Tool              Weather Tool
-                  (Prisma + PostgreSQL)      (Open-Meteo API)
-                         ↓                         ↓
-                         └────────────┬────────────┘
-                                      ↓
-                              LLM Processes Results
-                                      ↓
-                              Natural Language Response
-```
 
 ### Project Structure
 
@@ -127,15 +123,6 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Testing the Agent
-
-Try these example queries:
-
-- **Weather**: "What's the weather in London?"
-- **Database**: "Show me all employees"
-- **Database**: "List all orders with status 'pending'"
-- **Multi-step**: "How many employees do we have and what's the average salary?"
-
 ## 🛠️ Technical Details
 
 ### Recursive Tool Calling
@@ -191,58 +178,8 @@ model Order {
 - Uses Open-Meteo API (no API key required)
 - Returns temperature, conditions, and wind speed
 
-## 📦 Deployment
 
-### Deploy to Vercel
 
-1. **Push to GitHub**
-
-```bash
-git add .
-git commit -m "Initial commit"
-git push origin main
-```
-
-2. **Import to Vercel**
-
-- Go to [vercel.com/new](https://vercel.com/new)
-- Import your GitHub repository
-- Add environment variables:
-  - `DATABASE_URL`: Your PostgreSQL connection string
-  - `HF_API_KEY`: Your Hugging Face API key
-
-3. **Deploy**
-
-Vercel will automatically build and deploy your app.
-
-### Database Setup on Vercel
-
-**Option 1: Vercel Postgres**
-- In Vercel Dashboard → Storage → Create Database → Postgres
-- Vercel automatically adds `DATABASE_URL` to environment variables
-
-**Option 2: External Database** (Supabase, Neon, Railway)
-- Create a PostgreSQL database
-- Add the connection string as `DATABASE_URL` in Vercel
-
-**Run Migrations**:
-```bash
-npx prisma migrate deploy
-npm run seed
-```
-
-## 🧑‍💻 About Me
-
-I'm passionate about building AI-powered systems and have extensive experience with:
-
-- **MCP (Model Context Protocol)**: Built [Circuit Designer MCP](https://github.com/shivamsahu-tech/circuit-designer-mcp) with tools like `get_datasheet_pdf()`, `get_research_papers()`, etc.
-- **Agentic AI**: Multiple projects using LangChain, LangGraph, and custom agent architectures
-- **RAG Systems**: Created [CodeRAG AI](https://github.com/shivamsahu-tech/coderag-ai) - a custom code ingestion and retrieval system
-
-### Other Projects
-
-- 🔌 [Circuit Designer MCP](https://github.com/shivamsahu-tech/circuit-designer-mcp) - MCP server for electronics design
-- 🤖 [CodeRAG AI](https://github.com/shivamsahu-tech/coderag-ai) - Advanced code retrieval agent
 
 ## 🛠️ Tech Stack
 
@@ -251,25 +188,7 @@ I'm passionate about building AI-powered systems and have extensive experience w
 - **Database**: PostgreSQL, Prisma 7 (with pg adapter)
 - **AI/LLM**: Hugging Face Inference API (Qwen2.5-72B-Instruct)
 - **MCP**: @modelcontextprotocol/sdk
-- **Deployment**: Vercel
 
-## 📝 Scripts
-
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm start            # Start production server
-npm run seed         # Seed database with sample data
-npm run mcp:server   # Run MCP server standalone (for testing)
-```
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to open issues or submit pull requests.
-
-## 📄 License
-
-MIT License - feel free to use this project for learning or commercial purposes.
 
 ---
 
