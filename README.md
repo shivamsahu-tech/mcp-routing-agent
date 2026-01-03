@@ -25,7 +25,7 @@
 ### Project Structure
 
 ```
-inxtinct_ai/
+/
 ├── app/
 │   ├── api/chat/route.ts          # Main API endpoint
 │   ├── page.tsx                   # Chat UI
@@ -58,8 +58,8 @@ inxtinct_ai/
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/shivamsahu-tech/inxtinct-mcp-routing-agent.git
-cd inxtinct-mcp-routing-agent
+git clone https://github.com/shivamsahu-tech/mcp-routing-agent.git
+cd mcp-routing-agent
 ```
 
 2. **Install dependencies**
