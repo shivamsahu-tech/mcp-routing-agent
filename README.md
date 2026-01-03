@@ -1,24 +1,5 @@
 # MCP (Model Context Protocol) Routing Agent
 
-(Personal Note)
-
-Hey, 
-I created the required project api(`http://localhost:3000/api/chat`) , and also integrated a webpage, I used **NextJS + TypeScript + Prisma 7 (newer version) + Huggingface + MCP (Anthropic)**. I created MCP client in /lib folder while all mcp server files with tools belongs in server_mcp folder.
-
-I used here **recursive approach** with **max_iteration 5**, So our llm can call the tools again and again untill it hit the max_iteration value or get the most suitable answer, That is very crucial, Because if any work is needed multistep like first reviewing the tables in database and then accessing any table, then that also can be executed with this approach. (I try to successful deployment on vercel, but got some issue, as debugging can takes time(less time available), and also not mentioned in assignment, i submitted before successfull deployment.)
-
-
-#### My  Past Related work
-I have already worked on MCP, you can see my project (https://github.com/shivamsahu-tech/circuit-designer-mcp) that i build after the 1 month when anthropic release the MCP, in which i provided some tools like get_datasheet_pdf(), get_reserach_papers() etc.
-I also worked many agentic project using langchain and langgraph, and also some custom ingestion system, like codeRAG Agent (https://github.com/shivamsahu-tech/coderag-ai)  (graph based) . 
-
-I'm passionate about building AI-powered systems and have extensive experience with:
-
-- **Multimodel Real time MeetRAG AI** : Here i used realtime transcription using **websocket + deepgram API (dual channel ensure cost effective)**, Docs ingestions with **manual + OCR, Cloudinary data storage, redis** for caching. (https://github.com/shivamsahu-tech/meeting-rag)
-- **Graph based CodeRAG Agent**: Created [CodeRAG Agent](https://github.com/shivamsahu-tech/coderag-ai), Work indepth about the best context retrievel method for AI, **(inspire with cursor, windsurf technologies and cAST reserach paper)**, I created dependecy graph for the whole github codebase resolving the function, class calls, and imports using **tree-sitter and DFS traversal**, use here neo4J Graph DB
-- **MCP (Model Context Protocol)**: Built [Circuit Designer MCP](https://github.com/shivamsahu-tech/circuit-designer-mcp) with tools like `get_datasheet_pdf()`, `get_research_papers()`, `run_netlist_code()`, etc. And provide the LLM, **ngspice software interface, that how it generate we tested circuit designs**. 
-- **Other**: I also worked on person idea, in which a bot will join the **slack workspace** and using **webhook** it will read the project progress chat, and maintain a memory, so when project manager want to know the suggestion or check the progress development, he can easily justs talk with my agent.
-
 
 ## Architecture
 
